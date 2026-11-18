@@ -115,11 +115,13 @@ if (logoutBtn) {
 // TRANSACTIONS
 // ==========================================
 
+const transactionStorageKey =
+    "transactions_" + loggedInUser.email;
+
 let transactions =
     JSON.parse(
-        localStorage.getItem("transactions")
+        localStorage.getItem(transactionStorageKey)
     ) || [];
-
 
 // ==========================================
 // EDITING
@@ -195,7 +197,7 @@ function escapeHTML(value) {
 function saveTransactions() {
 
     localStorage.setItem(
-        "transactions",
+        transactionStorageKey,
         JSON.stringify(transactions)
     );
 
