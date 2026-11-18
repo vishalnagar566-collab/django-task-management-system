@@ -1,137 +1,45 @@
-# Django Task Management System
+# 👋 Hi, I'm Vishal Nagar
 
-A feature-rich Task Management System built using Django and PostgreSQL.
+### Frontend Developer | Web Development Learner
 
-## About the Project
+Welcome to my GitHub Portfolio! I enjoy building creative and user-friendly web projects while continuously learning new technologies.
 
-This project helps users organize, manage, and track their daily tasks through a responsive dashboard.
+## 🚀 My Projects
 
-Users can create an account, manage personal tasks, track progress, set priorities, and organize work efficiently.
+### 1. AI Expense Tracker
+An expense tracking project designed to help users manage and monitor their expenses.
 
-## Features
+![AI Expense Tracker](screenshots/ai-expense-tracker.png)
 
-- User Registration, Login and Logout
-- User Profile and Profile Picture
-- Change Password and Delete Account
-- Add, View, Edit and Delete Tasks
-- User-wise Task Security
-- Task Completion and Pending Status
-- Priority Management (High, Medium, Low)
-- Category Management (Personal, Work, Study, Shopping)
-- Task Search, Filters and Sorting
-- Dashboard Statistics
-- Task Completion Progress Bar
-- Overdue Tasks Alerts
-- Priority-wise Task Chart
-- Due Date Reminders
-- Task Calendar
-- Task Details Page
-- Notes and Comments
-- Task Attachments
-- Responsive Dashboard Design
+### 2. Movie Ticket
+A movie ticket booking interface project.
 
-## Technology Stack
+![Movie Ticket](screenshots/movie-ticket.png)
 
-- Python
-- Django
-- PostgreSQL
+### 3. Quiz App
+An interactive quiz application where users can test their knowledge.
+
+![Quiz App](screenshots/quiz-app.png)
+
+### 4. Weather App
+A weather application interface for checking weather information.
+
+![Weather App](screenshots/weather-app.png)
+
+## 🛠️ Skills
+
 - HTML
 - CSS
 - JavaScript
-- Git and GitHub
+- Python
+- Django
+- PostgreSQL
+- Git & GitHub
 
-## Project Structure
+## 📫 Connect With Me
 
-```text
-PORTFOLIO/
-│
-├── backend/
-│   ├── accounts/
-│   ├── tasks/
-│   ├── config/
-│   ├── templates/
-│   ├── media/
-│   ├── manage.py
-│   ├── requirements.txt
-│   └── .env
-│
-└── README.md
-```
+- **GitHub:** [Vishal Nagar](https://github.com/vishalnagar566-collab)
 
-## Installation and Setup
+---
 
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/vishalnagar566-collab/django-task-management-system.git
-```
-
-### 2. Open Backend Folder
-
-```bash
-cd django-task-management-system/backend
-```
-
-### 3. Create Virtual Environment
-
-```bash
-python -m venv venv
-```
-
-### 4. Activate Virtual Environment
-
-Windows:
-
-```bash
-venv\Scripts\activate
-```
-
-### 5. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 6. Configure Environment Variables
-
-Create a `.env` file inside the backend folder.
-
-Add your own configuration:
-
-```env
-SECRET_KEY=your-secret-key
-DEBUG=True
-DB_NAME=task_management
-DB_USER=postgres
-DB_PASSWORD=your-database-password
-DB_HOST=localhost
-DB_PORT=5432
-```
-
-Do not upload your actual `.env` file or passwords to GitHub.
-
-### 7. Run Database Migrations
-
-```bash
-python manage.py migrate
-```
-
-### 8. Start Development Server
-
-```bash
-python manage.py runserver
-```
-
-Open your browser:
-
-http://127.0.0.1:8000/
-
-## Developer
-
-**Vishal Nagar**
-
-GitHub: https://github.com/vishalnagar566-collab
-
-## License
-
-This project is available for learning and portfolio demonstration.
+⭐ Thanks for visiting my portfolio!
