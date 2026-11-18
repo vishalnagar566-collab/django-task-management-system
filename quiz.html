@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quiz App</title>
+
+    <link rel="stylesheet" href="quiz.css">
+</head>
+
+<body>
+    <button id="themeBtn" class="theme-btn">
+    🌙 Dark Mode
+</button>
+
+    <div class="quiz-container">
+
+        <!-- Start Screen -->
+        <div id="startScreen" class="screen">
+
+    <h1>🧠 Quiz App</h1>
+
+    <p>Choose a category and test your knowledge!</p>
+
+    <div class="category-box">
+
+        <button class="category-btn" data-category="html">
+            🌐 HTML
+        </button>
+
+        <button class="category-btn" data-category="css">
+            🎨 CSS
+        </button>
+
+        <button class="category-btn" data-category="javascript">
+            ⚡ JavaScript
+        </button>
+
+    </div>
+
+    <button id="startBtn">
+        Start Quiz
+    </button>
+
+</div>
+
+
+        <!-- Quiz Screen -->
+        <div id="quizScreen" class="screen hidden">
+
+            <div class="quiz-header">
+
+                <span>
+                    Question <span id="questionNumber">1</span>
+                </span>
+
+                <span>
+                    Score: <span id="score">0</span>
+                </span>
+
+            </div>
+            <div class="progress-container">
+    <div id="progressBar"></div>
+</div>
+
+            <!-- Timer -->
+            <div class="timer">
+                ⏱️ <span id="timer">15</span>s
+            </div>
+
+
+            <!-- Question -->
+            <h2 id="question">
+                Question will appear here
+            </h2>
+
+
+            <!-- Options -->
+            <div id="options">
+
+                <button class="option">
+                    Option 1
+                </button>
+
+                <button class="option">
+                    Option 2
+                </button>
+
+                <button class="option">
+                    Option 3
+                </button>
+
+                <button class="option">
+                    Option 4
+                </button>
+
+            </div>
+
+
+            <!-- Next Button -->
+            <button id="nextBtn" class="next-btn">
+                Next Question
+            </button>
+
+        </div>
+
+
+        <!-- Result Screen -->
+    <div id="resultScreen" class="screen hidden">
+
+    <h1>🎉 Quiz Completed!</h1>
+
+    <p>Your Final Score</p>
+
+    <h2 id="finalScore">0 / 5</h2>
+
+    <p id="resultMessage"></p>
+
+    <p>✅ Correct: <span id="correctAnswers">0</span></p>
+
+<p>❌ Wrong: <span id="wrongAnswers">0</span></p>
+
+<p>📊 Percentage: <span id="percentage">0%</span></p>
+
+<p>🏆 Best Score: <span id="bestScore">0</span></p>
+
+    <button id="restartBtn">
+        🔄 Restart Quiz
+    </button>
+    <button id="leaderboardBtn">
+    🏆 Leaderboard
+</button>
+    </div>
+
+
+<!-- Leaderboard Screen -->
+<div id="leaderboardScreen" class="screen hidden">
+
+    <h1>🏆 Leaderboard</h1>
+
+    <div id="leaderboardList">
+        <p>No scores yet!</p>
+    </div>
+
+    <button type="button" onclick="window.location.reload()">
+    ⬅️ Back to Quiz
+</button>
+
+</div>
+
+
+    </div>
+
+
+    <script src="quiz.js"></script>
+
+</body>
+</html>

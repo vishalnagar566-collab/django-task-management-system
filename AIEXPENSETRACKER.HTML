@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ExpenseAI - Dashboard</title>
+
+    <link rel="stylesheet" href="TRACKER.CSS">
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+         SIDEBAR
+    =========================================== -->
+
+    <aside class="sidebar">
+
+        <h2>
+            Expense<span>AI</span>
+        </h2>
+
+
+        <nav>
+
+            <a href="#" class="active">
+                📊 Dashboard
+            </a>
+
+            <a href="#transactions">
+                💳 Transactions
+            </a>
+
+            <a href="#analytics">
+                📈 Analytics
+            </a>
+
+            <a href="#settings">
+                ⚙️ Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- ==========================================
+         MAIN CONTENT
+    =========================================== -->
+
+    <main class="main-content">
+
+
+        <!-- ==========================================
+             HEADER
+        =========================================== -->
+
+        <header class="header">
+
+            <div>
+
+                <h1>
+                    Dashboard
+                </h1>
+
+                <p id="welcomeMessage">
+                    Welcome back 👋
+                </p>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <button id="themeBtn">
+                    🌙
+                </button>
+
+                <button id="logoutBtn">
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ==========================================
+             SUMMARY CARDS
+        =========================================== -->
+
+        <section class="summary">
+
+
+            <!-- BALANCE -->
+
+            <div class="card">
+
+                <p>
+                    Total Balance
+                </p>
+
+                <h2 id="balance">
+                    ₹0
+                </h2>
+
+            </div>
+
+
+            <!-- INCOME -->
+
+            <div class="card">
+
+                <p>
+                    Total Income
+                </p>
+
+                <h2
+                    id="income"
+                    class="income"
+                >
+                    ₹0
+                </h2>
+
+            </div>
+
+
+            <!-- EXPENSE -->
+
+            <div class="card">
+
+                <p>
+                    Total Expense
+                </p>
+
+                <h2
+                    id="expense"
+                    class="expense"
+                >
+                    ₹0
+                </h2>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ==========================================
+             ADD TRANSACTION
+        =========================================== -->
+
+        <section class="transaction-form">
+
+            <h2>
+                Add Transaction
+            </h2>
+
+
+            <form id="expenseForm">
+
+
+                <!-- DESCRIPTION -->
+
+                <input
+                    type="text"
+                    id="description"
+                    placeholder="Description"
+                    required
+                >
+
+
+                <!-- AMOUNT -->
+
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="Amount"
+                    min="1"
+                    step="0.01"
+                    required
+                >
+
+
+                <!-- TYPE -->
+
+                <select id="type" required>
+
+                    <option value="expense">
+                        Expense
+                    </option>
+
+                    <option value="income">
+                        Income
+                    </option>
+
+                </select>
+
+
+                <!-- CATEGORY -->
+
+                <select id="category" required>
+
+                    <option value="Food">
+                        Food
+                    </option>
+
+                    <option value="Shopping">
+                        Shopping
+                    </option>
+
+                    <option value="Transport">
+                        Transport
+                    </option>
+
+                    <option value="Bills">
+                        Bills
+                    </option>
+
+                    <option value="Entertainment">
+                        Entertainment
+                    </option>
+
+                    <option value="Health">
+                        Health
+                    </option>
+
+                    <option value="Salary">
+                        Salary
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+
+                <!-- DATE -->
+
+                <input
+                    type="date"
+                    id="date"
+                    required
+                >
+
+
+                <!-- SUBMIT -->
+
+                <button type="submit">
+                    Add Transaction
+                </button>
+
+
+            </form>
+
+        </section>
+
+
+
+        <!-- ==========================================
+             CHARTS
+        =========================================== -->
+
+        <section
+            class="charts"
+            id="analytics"
+        >
+
+
+            <!-- INCOME VS EXPENSE -->
+
+            <div class="chart-card">
+
+                <h2>
+                    Income vs Expense
+                </h2>
+
+                <canvas
+                    id="incomeExpenseChart"
+                ></canvas>
+
+            </div>
+
+
+
+            <!-- CATEGORY -->
+
+            <div class="chart-card">
+
+                <h2>
+                    Expense by Category
+                </h2>
+
+                <canvas
+                    id="categoryChart"
+                ></canvas>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ==========================================
+             TRANSACTIONS
+        =========================================== -->
+
+        <section
+            class="transactions"
+            id="transactions"
+        >
+
+
+            <!-- SECTION HEADER -->
+
+            <div class="section-header">
+
+                <h2>
+                    Recent Transactions
+                </h2>
+
+
+                <!-- FILTERS -->
+
+                <div class="filters">
+
+
+                    <!-- SEARCH -->
+
+                    <input
+                        type="text"
+                        id="search"
+                        placeholder="Search..."
+                    >
+
+
+                    <!-- TYPE -->
+
+                    <select id="filterType">
+
+                        <option value="all">
+                            All
+                        </option>
+
+                        <option value="income">
+                            Income
+                        </option>
+
+                        <option value="expense">
+                            Expense
+                        </option>
+
+                    </select>
+
+
+                    <!-- MONTH -->
+
+                    <select id="monthFilter">
+
+                        <option value="all">
+                            All Months
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==========================================
+                 TRANSACTION TOOLS
+            =========================================== -->
+
+            <div class="transaction-tools">
+
+
+                <button id="exportBtn">
+                    📥 Export CSV
+                </button>
+
+
+                <button id="clearAllBtn">
+                    🗑️ Clear All
+                </button>
+
+
+            </div>
+
+
+
+            <!-- TRANSACTION LIST -->
+
+            <div id="transactionList"></div>
+
+
+        </section>
+
+
+
+        <!-- ==========================================
+             SETTINGS
+        =========================================== -->
+
+        <section
+            id="settings"
+            style="display:none;"
+        >
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ==========================================
+         CHART.JS
+    =========================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js"
+    ></script>
+
+
+    <!-- ==========================================
+         LOGIN PROTECTION
+    =========================================== -->
+
+    <script>
+
+        const loggedInUser =
+            JSON.parse(
+                localStorage.getItem("loggedInUser")
+            );
+
+
+        /*
+         * User login nahi hai
+         * to login page par bhejo
+         */
+
+        if (!loggedInUser) {
+
+            window.location.href =
+                "login.html";
+
+        }
+
+    </script>
+
+
+    <!-- ==========================================
+         MAIN JAVASCRIPT
+    =========================================== -->
+
+    <script src="TRACKER.JS"></script>
+
+
+    <!-- ==========================================
+         USER / LOGOUT
+    =========================================== -->
+
+    <script>
+
+        /*
+         * Welcome message
+         */
+
+        const welcomeMessage =
+            document.getElementById(
+                "welcomeMessage"
+            );
+
+
+        if (
+            loggedInUser &&
+            welcomeMessage
+        ) {
+
+            welcomeMessage.textContent =
+                `Welcome back, ${loggedInUser.name} 👋`;
+
+        }
+
+
+
+        /*
+         * Logout
+         */
+
+        const logoutBtn =
+            document.getElementById(
+                "logoutBtn"
+            );
+
+
+        if (logoutBtn) {
+
+            logoutBtn.addEventListener(
+                "click",
+                () => {
+
+                    localStorage.removeItem(
+                        "loggedInUser"
+                    );
+
+
+                    window.location.href =
+                        "login.html";
+
+                }
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

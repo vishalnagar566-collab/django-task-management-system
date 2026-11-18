@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Movie Search App</title>
+
+    <link rel="stylesheet" href="movie.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+
+        <div class="logo">
+            🎬 MovieFinder
+        </div>
+
+        <div class="search-box">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search for a movie..."
+            >
+
+            <button id="searchBtn">
+                Search
+            </button>
+            <div id="suggestions" class="suggestions"></div>
+        </div>
+
+    </header>
+
+
+    <!-- Main -->
+    <main class="container">
+
+        <section class="hero">
+
+            <h1>
+                Find Your Next Favorite Movie 🍿
+            </h1>
+
+            <p>
+                Search thousands of movies and discover
+                something amazing to watch.
+            </p>
+
+        </section>
+
+
+        <!-- Loading -->
+        <div id="loading" class="loading hidden">
+            Loading movies...
+        </div>
+
+
+        <!-- Error -->
+        <div id="errorMessage" class="error hidden">
+            Movie not found.
+        </div>
+
+        <section class="favorites-section">
+
+    <h2 class="section-title">
+    ❤️ My Favorites
+    <span id="favoriteCount">(0)</span>
+</h2>
+
+    <div
+        id="favoriteContainer"
+        class="movie-container"
+    >
+    </div>
+
+</section>
+
+        <!-- Movies -->
+        <section>
+
+            <h2 class="section-title">
+                Movies
+            </h2>
+
+            <div
+                id="movieContainer"
+                class="movie-container"
+            >
+
+                <!-- Movie cards will come here -->
+                 <div id="loading" class="loading">
+    Loading movies...
+</div>
+
+          </div>
+
+            <div id="pagination" class="pagination"></div>
+
+
+            <div class="filter-buttons">
+
+    <button class="filter-btn active" data-genre="All">
+        All
+    </button>
+
+    <button class="filter-btn" data-genre="Action">
+        Action
+    </button>
+
+    <button class="filter-btn" data-genre="Sci-Fi">
+        Sci-Fi
+    </button>
+    <div class="year-filter">
+
+    <label for="yearFilter">
+        📅 Year:
+    </label>
+
+    <select id="yearFilter">
+
+        <option value="All">
+            All Years
+        </option>
+
+        <option value="2019">
+            2019
+        </option>
+
+        <option value="2014">
+            2014
+        </option>
+
+        <option value="2010">
+            2010
+        </option>
+
+        <option value="2008">
+            2008
+        </option>
+
+    </select>
+
+</div>
+<div class="rating-filter">
+
+    <label for="ratingFilter">
+        ⭐ Rating:
+    </label>
+
+    <select id="ratingFilter">
+
+        <option value="All">
+            All Ratings
+        </option>
+
+        <option value="9">
+            9+ Rating
+        </option>
+
+        <option value="8">
+            8+ Rating
+        </option>
+
+        <option value="7">
+            7+ Rating
+        </option>
+
+    </select>
+
+</div>
+<div class="sort-filter">
+
+    <label for="sortFilter">
+        🔃 Sort:
+    </label>
+
+    <select id="sortFilter">
+
+        <option value="default">
+            Default
+        </option>
+
+        <option value="ratingHigh">
+            Rating: High → Low
+        </option>
+
+        <option value="ratingLow">
+            Rating: Low → High
+        </option>
+
+        <option value="yearNew">
+            Year: New → Old
+        </option>
+
+        <option value="yearOld">
+            Year: Old → New
+        </option>
+
+        <option value="titleAZ">
+            Title: A → Z
+        </option>
+
+        <option value="titleZA">
+            Title: Z → A
+        </option>
+
+    </select>
+
+</div>
+
+</div>
+
+        </section>
+
+    </main>
+    <!-- Movie Details Modal -->
+
+<div id="movieModal" class="modal">
+
+    <div class="modal-content">
+
+        <button id="closeModal" class="close-btn">
+            ✕
+        </button>
+
+        <div id="modalBody"></div>
+
+    </div>
+
+</div>
+
+
+    <script src="movie.js"></script>
+
+</body>
+</html>

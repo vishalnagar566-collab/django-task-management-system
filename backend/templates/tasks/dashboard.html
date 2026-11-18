@@ -1,0 +1,652 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Task Management Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
+            color: #26344d;
+        }
+
+        .navbar {
+            background: #26344d;
+            color: white;
+            padding: 18px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .navbar h2 {
+            font-size: 23px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            background: #405cf5;
+        }
+
+        .container {
+            max-width: 1250px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .welcome {
+            margin-bottom: 25px;
+        }
+
+        .welcome h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #0000000d;
+        }
+
+        .stat-card h3 {
+            font-size: 15px;
+            color: #777;
+            margin-bottom: 12px;
+        }
+
+        .stat-card p {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .blue { border-left: 5px solid #405cf5; }
+        .green { border-left: 5px solid #20b26b; }
+        .orange { border-left: 5px solid #f39c12; }
+        .red { border-left: 5px solid #e74c3c; }
+
+        .panel {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px #0000000d;
+        }
+
+        .panel h2 {
+            margin-bottom: 18px;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 16px;
+            background: #e8ebf2;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #20b26b;
+            border-radius: 20px;
+        }
+
+        .progress-info {
+            margin-top: 10px;
+            color: #666;
+        }
+
+        .alert {
+            background: #fff0f0;
+            border-left: 5px solid #e74c3c;
+            padding: 15px;
+            border-radius: 7px;
+            margin-bottom: 20px;
+        }
+
+        .alert h3 {
+            color: #d63031;
+            margin-bottom: 8px;
+        }
+
+        .priority-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .bar-row {
+            display: grid;
+            grid-template-columns: 90px 1fr 35px;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bar-track {
+            height: 12px;
+            background: #edf0f5;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 20px;
+        }
+
+        .high-fill { background: #e74c3c; }
+        .medium-fill { background: #f39c12; }
+        .low-fill { background: #20b26b; }
+
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 16px;
+            background: #405cf5;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-green { background: #20a464; }
+        .btn-red { background: #e74c3c; }
+        .btn-orange { background: #e69519; }
+        .btn-dark { background: #26344d; }
+
+        .filters {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr auto;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #dce1eb;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 750px;
+        }
+
+        th, td {
+            padding: 14px 12px;
+            text-align: left;
+            border-bottom: 1px solid #edf0f5;
+        }
+
+        th {
+            background: #f7f8fc;
+        }
+
+        .badge {
+            padding: 5px 9px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .priority-high {
+            background: #ffe0e0;
+            color: #c0392b;
+        }
+
+        .priority-medium {
+            background: #fff0d2;
+            color: #a66a00;
+        }
+
+        .priority-low {
+            background: #dff7e9;
+            color: #16804b;
+        }
+
+        .completed-status {
+            color: #16804b;
+            font-weight: bold;
+        }
+
+        .pending-status {
+            color: #d97706;
+            font-weight: bold;
+        }
+
+        .actions {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .actions .btn {
+            padding: 7px 10px;
+            font-size: 12px;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 35px;
+            color: #888;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #888;
+        }
+
+        @media(max-width: 900px) {
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .filters {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width: 550px) {
+            .stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 15px;
+            }
+
+            .stat-card p {
+                font-size: 23px;
+            }
+
+            .welcome h1 {
+                font-size: 23px;
+            }
+
+            .filters {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <h2>📋 Task Manager</h2>
+
+    <div class="nav-links">
+
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+
+        <a href="{% url 'task_calendar' %}">📅 Calendar</a>
+
+        <a href="{% url 'profile' %}">👤 My Profile</a>
+
+        <a href="{% url 'add_task' %}">➕ Add Task</a>
+
+        <a href="{% url 'logout' %}">Logout</a>
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <div class="welcome">
+        <h1>Welcome to Your Dashboard 👋</h1>
+        <p>Manage your daily tasks efficiently.</p>
+    </div>
+
+
+    <!-- Dashboard Statistics -->
+
+    <div class="stats">
+
+        <div class="stat-card blue">
+            <h3>Total Tasks</h3>
+            <p>{{ total_tasks }}</p>
+        </div>
+
+        <div class="stat-card green">
+            <h3>Completed Tasks</h3>
+            <p>{{ completed_tasks }}</p>
+        </div>
+
+        <div class="stat-card orange">
+            <h3>Pending Tasks</h3>
+            <p>{{ pending_tasks }}</p>
+        </div>
+
+        <div class="stat-card red">
+            <h3>High Priority Tasks</h3>
+            <p>{{ high_priority_tasks }}</p>
+        </div>
+
+    </div>
+
+
+    <!-- Progress Bar -->
+
+    <div class="panel">
+
+        <h2>📊 Task Completion Progress</h2>
+
+        <div class="progress-track">
+
+            <div class="progress-fill"
+                 style="width: {{ completion_percentage }}%;">
+            </div>
+
+        </div>
+
+        <p class="progress-info">
+            {{ completion_percentage }}% Tasks Completed
+        </p>
+
+    </div>
+
+
+    <!-- Overdue Tasks -->
+
+    {% if overdue_tasks %}
+
+    <div class="alert">
+
+        <h3>⚠️ Overdue Tasks Alert</h3>
+
+        <p>You have {{ overdue_tasks|length }} overdue task(s).</p>
+
+        {% for task in overdue_tasks %}
+
+            <p>• {{ task.title }} - Due: {{ task.due_date }}</p>
+
+        {% endfor %}
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- Priority Chart -->
+
+    <div class="panel">
+
+        <h2>📈 Priority-wise Task Chart</h2>
+
+        <div class="priority-bars">
+
+            <div class="bar-row">
+                <span>High</span>
+                <div class="bar-track">
+                    <div class="bar-fill high-fill"
+                         style="width: {{ high_priority_percentage }}%;">
+                    </div>
+                </div>
+                <strong>{{ high_priority_tasks }}</strong>
+            </div>
+
+            <div class="bar-row">
+                <span>Medium</span>
+                <div class="bar-track">
+                    <div class="bar-fill medium-fill"
+                         style="width: {{ medium_priority_percentage }}%;">
+                    </div>
+                </div>
+                <strong>{{ medium_priority_tasks }}</strong>
+            </div>
+
+            <div class="bar-row">
+                <span>Low</span>
+                <div class="bar-track">
+                    <div class="bar-fill low-fill"
+                         style="width: {{ low_priority_percentage }}%;">
+                    </div>
+                </div>
+                <strong>{{ low_priority_tasks }}</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Due Date Reminders -->
+
+    {% if upcoming_tasks %}
+
+    <div class="panel">
+
+        <h2>🔔 Upcoming Due Date Reminders</h2>
+
+        {% for task in upcoming_tasks %}
+
+            <p style="margin: 10px 0;">
+                📌 {{ task.title }} —
+                Due: {{ task.due_date }}
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- Task List -->
+
+    <div class="panel">
+
+        <div class="toolbar">
+
+            <h2>My Tasks</h2>
+
+            <a href="{% url 'add_task' %}" class="btn btn-green">
+                ➕ Add New Task
+            </a>
+
+        </div>
+
+
+        <!-- Search and Filters -->
+
+        <form method="GET" class="filters">
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Search tasks..."
+                value="{{ request.GET.search }}"
+            >
+
+            <select name="priority">
+                <option value="">All Priorities</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+
+            <select name="category">
+                <option value="">All Categories</option>
+                <option value="Personal">Personal</option>
+                <option value="Work">Work</option>
+                <option value="Study">Study</option>
+                <option value="Shopping">Shopping</option>
+            </select>
+
+            <select name="sort">
+                <option value="">Newest First</option>
+                <option value="oldest">Oldest First</option>
+                <option value="due_date">Due Date</option>
+            </select>
+
+            <button type="submit" class="btn">
+                Search
+            </button>
+
+        </form>
+
+
+        <!-- Tasks Table -->
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Priority</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for task in tasks %}
+
+                    <tr>
+
+                        <td>
+                            <strong>{{ task.title }}</strong>
+                        </td>
+
+                        <td>{{ task.category }}</td>
+
+                        <td>
+
+                            {% if task.priority == 'High' %}
+                                <span class="badge priority-high">High</span>
+
+                            {% elif task.priority == 'Medium' %}
+                                <span class="badge priority-medium">Medium</span>
+
+                            {% else %}
+                                <span class="badge priority-low">Low</span>
+                            {% endif %}
+
+                        </td>
+
+                        <td>{{ task.due_date|default:"Not Set" }}</td>
+
+                        <td>
+
+                            {% if task.completed %}
+                                <span class="completed-status">Completed</span>
+                            {% else %}
+                                <span class="pending-status">Pending</span>
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            <div class="actions">
+
+                                <a href="{% url 'task_detail' task.id %}"
+                                   class="btn btn-dark">
+                                    View
+                                </a>
+
+                                <a href="{% url 'edit_task' task.id %}"
+                                   class="btn btn-orange">
+                                    Edit
+                                </a>
+
+                                <a href="{% url 'delete_task' task.id %}"
+                                   class="btn btn-red">
+                                    Delete
+                                </a>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+                        <td colspan="6" class="empty">
+                            No tasks found. Add your first task!
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<footer>
+    Task Management System | Built with Django ❤️
+</footer>
+
+</body>
+</html>

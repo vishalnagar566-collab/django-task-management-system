@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Weather App</title>
+
+    <link rel="stylesheet" href="weather.css">
+</head>
+
+<body>
+
+    <div class="weather-container">
+
+        <h1>🌤️ Weather App</h1>
+
+        <button id="themeBtn" class="theme-btn">
+    🌙 Dark Mode
+</button>
+
+        <p class="subtitle">
+            Check the current weather of any city
+        </p>
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="cityInput"
+                placeholder="Enter city name..."
+            >
+
+            <button id="searchBtn">
+                Search
+            </button>
+
+        </div>
+
+        <p id="errorMessage" class="error"></p>
+        
+<button id="locationBtn" class="location-btn">
+    📍 Use My Location
+</button>
+
+        <div id="loading" class="loading hidden">
+            Loading weather...
+        </div>
+
+        <div id="weatherCard" class="weather-card hidden">
+
+            <h2 id="cityName">
+                Kota
+            </h2>
+
+            <p id="weatherDescription">
+                Clear Sky
+            </p>
+            <div id="weatherIcon">☀️</div>
+
+            <div class="temperature">
+                <span id="temperature">30</span>°C
+            </div>
+            <button id="unitBtn" class="unit-btn">
+    °C / °F
+</button>
+
+            <div class="weather-details">
+
+                <div>
+                    <span>💧</span>
+                    <p>Humidity</p>
+                    <strong id="humidity">60%</strong>
+                </div>
+
+                <div class="weather-details">
+
+    <div>
+        <h4>Humidity</h4>
+        <p id="humidity">--%</p>
+    </div>
+
+    <div>
+        <h4>Wind</h4>
+        <p id="windSpeed">-- km/h</p>
+    </div>
+
+    <div>
+        <h4>Feels Like</h4>
+        <p id="feelsLike">--°C</p>
+    </div>
+
+    <div>
+        <h4>Pressure</h4>
+        <p id="pressure">-- hPa</p>
+    </div>
+
+    <div>
+        <h4>Visibility</h4>
+        <p id="visibility">-- km</p>
+    </div>
+
+</div>
+
+                
+
+            </div>
+
+        </div>
+
+        <div id="forecast" class="forecast">
+
+    <h3>5-Day Forecast</h3>
+
+    <div id="forecastContainer" class="forecast-container"></div>
+
+</div>
+
+<!-- Sunrise & Sunset -->
+<div class="sun-times">
+    <div class="sun-card">
+        <span class="sun-icon">🌅</span>
+        <div>
+            <h4>Sunrise</h4>
+            <p id="sunrise">--:--</p>
+        </div>
+    </div>
+
+    <div class="sun-card">
+        <span class="sun-icon">🌇</span>
+        <div>
+            <h4>Sunset</h4>
+            <p id="sunset">--:--</p>
+        </div>
+    </div>
+</div>
+
+<!-- UV Index -->
+<div class="uv-section">
+    <div class="uv-card">
+        <span class="uv-icon">☀️</span>
+
+        <div>
+            <h4>UV Index</h4>
+            <p id="uvIndex">--</p>
+            <span id="uvLevel">--</span>
+        </div>
+    </div>
+</div>
+
+<!-- Air Quality -->
+<div class="air-quality-section">
+    <div class="aqi-card">
+        <span class="aqi-icon">🌫️</span>
+
+        <div>
+            <h4>Air Quality</h4>
+            <p id="aqiValue">--</p>
+            <span id="aqiLevel">--</span>
+        </div>
+    </div>
+</div>
+
+<!-- Weather Alerts -->
+<div id="weatherAlert" class="weather-alert hidden">
+    <div class="alert-icon">⚠️</div>
+
+    <div class="alert-content">
+        <h4 id="alertTitle">Weather Alert</h4>
+        <p id="alertMessage">--</p>
+    </div>
+</div>
+<div id="recentSearches" class="recent-searches">
+
+    <h3>Recent Searches</h3>
+
+    <div id="recentCities" class="recent-cities"></div>
+
+</div>
+
+    </div>
+
+    <script src="weather.js"></script>
+
+</body>
+
+</html>

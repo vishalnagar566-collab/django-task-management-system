@@ -1,0 +1,198 @@
+{% load calendar_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Task Calendar</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
+            margin: 0;
+            padding: 25px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #26344d;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 25px 0;
+        }
+
+        .navigation a,
+        .back {
+            background: #405cf5;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }
+
+        .day-name {
+            background: #405cf5;
+            color: white;
+            text-align: center;
+            padding: 12px 5px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .day {
+            min-height: 115px;
+            background: #f7f8fc;
+            border: 1px solid #e1e5ef;
+            border-radius: 7px;
+            padding: 8px;
+        }
+
+        .today {
+            border: 2px solid #405cf5;
+            background: #edf1ff;
+        }
+
+        .date-number {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .task {
+            background: #e3eaff;
+            padding: 6px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+            overflow-wrap: anywhere;
+        }
+
+        .completed {
+            background: #d8f5e3;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 25px;
+        }
+
+        @media(max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .day {
+                min-height: 90px;
+                padding: 4px;
+            }
+
+            .task {
+                font-size: 10px;
+            }
+
+            .day-name {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📅 Task Calendar</h1>
+
+    <div class="navigation">
+
+        <a href="?year={{ year }}&month={{ month|add:'-1' }}">
+            ← Previous
+        </a>
+
+        <h2>{{ month_name }} {{ year }}</h2>
+
+        <a href="?year={{ year }}&month={{ month|add:'1' }}">
+            Next →
+        </a>
+
+    </div>
+
+    <div class="calendar">
+        
+        <div class="day-name">Mon</div>
+        <div class="day-name">Tue</div>
+        <div class="day-name">Wed</div>
+        <div class="day-name">Thu</div>
+        <div class="day-name">Fri</div>
+        <div class="day-name">Sat</div>
+        <div class="day-name">Sun</div>
+
+        {% for week in calendar %}
+
+            {% for day in week %}
+
+                {% if day == 0 %}
+
+                    <div class="day"></div>
+
+                {% else %}
+
+                    <div class="day {% if today.day == day and today.month == month and today.year == year %}today{% endif %}">
+
+                        <div class="date-number">
+                            {{ day }}
+                        </div>
+
+                        {% for task in tasks_by_date|get_item:day %}
+
+                            <div class="task {% if task.completed %}completed{% endif %}">
+                                {{ task.title }}
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% endif %}
+
+            {% endfor %}
+
+        {% endfor %}
+
+    </div>
+
+    <a href="{% url 'dashboard' %}" class="back">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>

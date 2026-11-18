@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | Task Manager</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            padding: 35px 15px;
+            color: #26344d;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px #00000010;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+
+        .profile-image {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #e8ebf2;
+            border: 5px solid #e0e7ff;
+            margin-bottom: 15px;
+        }
+
+        .username {
+            font-size: 23px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+        .info {
+            background: #f8fafc;
+            padding: 17px;
+            border-radius: 10px;
+            margin: 13px 0;
+            text-align: left;
+            border: 1px solid #e2e8f0;
+        }
+
+        .info strong {
+            display: block;
+            color: #405cf5;
+            margin-bottom: 8px;
+        }
+
+        .info p {
+            overflow-wrap: anywhere;
+            line-height: 1.5;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #405cf5;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background: #263fca;
+        }
+
+        .danger {
+            background: #dc3545;
+        }
+
+        .danger:hover {
+            background: #b91c1c;
+        }
+
+        .secondary {
+            background: #475569;
+        }
+
+        .secondary:hover {
+            background: #334155;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 23px 17px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>👤 My Profile</h1>
+
+    {% if profile.profile_picture %}
+        <img src="{{ profile.profile_picture.url }}"
+             alt="Profile Picture"
+             class="profile-image">
+    {% else %}
+        <img src="https://via.placeholder.com/140"
+             alt="Default Profile Picture"
+             class="profile-image">
+    {% endif %}
+
+    <div class="username">
+        {{ request.user.username }}
+    </div>
+
+    <p class="subtitle">Welcome to your Task Manager account</p>
+
+    <div class="info">
+        <strong>👤 Username</strong>
+        <p>{{ request.user.username }}</p>
+    </div>
+
+    <div class="info">
+        <strong>📧 Email Address</strong>
+        <p>{{ request.user.email|default:"Not added" }}</p>
+    </div>
+
+    <div class="info">
+        <strong>📝 Bio</strong>
+        <p>{{ profile.bio|default:"No bio added yet." }}</p>
+    </div>
+
+    <div class="info">
+        <strong>📅 Account Created</strong>
+        <p>{{ request.user.date_joined|date:"d M Y" }}</p>
+    </div>
+
+    <div class="buttons">
+
+        <a href="{% url 'edit_profile' %}" class="btn">
+            ✏️ Edit Profile
+        </a>
+
+        <a href="{% url 'change_password' %}" class="btn">
+            🔐 Change Password
+        </a>
+
+        <a href="{% url 'delete_account' %}" class="btn danger">
+            🗑️ Delete Account
+        </a>
+
+        <a href="{% url 'dashboard' %}" class="btn secondary">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,296 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+.quiz-container {
+    width: 100%;
+    max-width: 600px;
+}
+
+.screen {
+    background: white;
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Start Screen */
+
+#startScreen {
+    text-align: center;
+}
+
+#startScreen h1 {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+#startScreen p {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 17px;
+}
+
+/* Buttons */
+
+button {
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+#startBtn,
+#restartBtn {
+    background: #111827;
+    color: white;
+    padding: 14px 30px;
+}
+
+#startBtn:hover,
+#restartBtn:hover {
+    background: #374151;
+}
+
+/* Quiz Header */
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Timer */
+
+.timer {
+    text-align: center;
+    margin-bottom: 25px;
+
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Question */
+
+#question {
+    font-size: 24px;
+    line-height: 1.4;
+    margin-bottom: 25px;
+}
+
+/* Options */
+
+#options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.option {
+    width: 100%;
+    padding: 14px;
+
+    background: #f3f4f6;
+    border: 2px solid #e5e7eb;
+
+    text-align: left;
+}
+
+.option:hover {
+    background: #e5e7eb;
+}
+
+/* Correct / Wrong */
+
+.option.correct {
+    background: #dcfce7;
+    border-color: #16a34a;
+}
+
+.option.wrong {
+    background: #fee2e2;
+    border-color: #dc2626;
+}
+
+/* Next Button */
+
+.next-btn {
+    width: 100%;
+    margin-top: 25px;
+
+    padding: 14px;
+
+    background: #111827;
+    color: white;
+}
+
+.next-btn:hover {
+    background: #374151;
+}
+
+/* Result Screen */
+
+#resultScreen {
+    text-align: center;
+}
+
+#resultScreen h1 {
+    margin-bottom: 20px;
+}
+
+#resultScreen p {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+#finalScore {
+    font-size: 36px;
+    margin-bottom: 25px;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 12px;
+    }
+
+    .screen {
+        padding: 25px 20px;
+    }
+
+    #startScreen h1 {
+        font-size: 32px;
+    }
+
+    #question {
+        font-size: 21px;
+    }
+}
+.timer {
+    width: 70px;
+    height: 70px;
+
+    margin: 0 auto 25px;
+
+    border: 5px solid #e5e7eb;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 18px;
+    font-weight: bold;
+}
+/* Progress Bar */
+
+.progress-container {
+    width: 100%;
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+#progressBar {
+    width: 0%;
+    height: 100%;
+    background: #111827;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+.category-box {
+    display: flex;
+    gap: 10px;
+    margin: 25px 0;
+}
+
+.category-btn {
+    flex: 1;
+    padding: 12px;
+    background: #f3f4f6;
+    border: 2px solid #e5e7eb;
+}
+
+.category-btn:hover {
+    background: #e5e7eb;
+}
+
+.category-btn.selected {
+    background: #111827;
+    color: white;
+    border-color: #111827;
+}
+
+@media (max-width: 600px) {
+    .category-box {
+        flex-direction: column;
+    }
+}
+/* ===============================
+   DARK / LIGHT MODE
+================================ */
+
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.quiz-container {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+
+    padding: 10px 16px;
+
+    border: none;
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+body.dark-mode .quiz-container {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+body.dark-mode .theme-btn {
+    background-color: #ffffff;
+    color: #121212;
+}

@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Profile</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 550px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #00000012;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #26344d;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 7px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dce1eb;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        button, .back {
+            display: inline-block;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 15px;
+        }
+
+        button {
+            background: #405cf5;
+            color: white;
+        }
+
+        .back {
+            background: #26344d;
+            color: white;
+            margin-left: 8px;
+        }
+
+        button:hover {
+            background: #263fca;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>✏️ Edit Profile</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <label>Username</label>
+
+        <input
+            type="text"
+            name="username"
+            value="{{ request.user.username }}"
+            required
+        >
+
+        <label>Email</label>
+
+        <input
+            type="email"
+            name="email"
+            value="{{ request.user.email }}"
+        >
+
+        <label>Bio</label>
+
+        <textarea name="bio"
+                  maxlength="300"
+                  placeholder="Write something about yourself...">{{ profile.bio }}</textarea>
+
+                  <label>Profile Picture</label>
+<input type="file" name="profile_picture" accept="image/*">
+
+        <button type="submit">
+            Save Changes
+        </button>
+
+        <a href="{% url 'profile' %}" class="back">
+            Cancel
+        </a>
+
+    </form>
+
+</div>
+
+</body>
+</html>
+

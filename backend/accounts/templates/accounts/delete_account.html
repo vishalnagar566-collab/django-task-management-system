@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Account</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 35px;
+            width: 350px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #dc2626;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        button {
+            background: #dc2626;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background: #b91c1c;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #2563eb;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Delete Account?</h2>
+
+    <p>
+        Are you sure you want to permanently delete your account?
+        This action cannot be undone.
+    </p>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Enter Current Password</label>
+
+    <input
+        type="password"
+        name="password"
+        placeholder="Enter your password"
+        required
+    >
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <button type="submit">
+        Yes, Delete My Account
+    </button>
+</form>
+
+    <a href="{% url 'profile' %}">Cancel and Go Back</a>
+
+</div>
+
+</body>
+</html>
