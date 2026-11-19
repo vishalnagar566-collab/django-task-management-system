@@ -1,8 +1,8 @@
 # 👋 Hi, I'm Vishal Nagar
 
-### Frontend Developer | Web Development Learner
+### Frontend Developer | Python & Django Developer
 
-Welcome to my GitHub Portfolio! I enjoy building creative and user-friendly web projects while continuously learning new technologies.
+Welcome to my GitHub Portfolio! I enjoy building creative, user-friendly web applications while continuously learning new technologies.
 
 ## 🚀 My Projects
 
@@ -25,6 +25,23 @@ An interactive quiz application where users can test their knowledge.
 A weather application interface for checking weather information.
 
 ![Weather App](screenshots/weather-app.png)
+
+### 5. Django Task Management System
+A full-stack task management application built using Django and PostgreSQL.
+
+**Features:**
+- User Registration and Login
+- Add, Edit and Delete Tasks
+- Complete / Pending Task Management
+- Task Notes and Attachments
+- Task Calendar
+- Task Priority and Due Dates
+
+**Technologies:** Python, Django, HTML, CSS, PostgreSQL
+
+🌐 [Live Demo](https://django-task-management-system.onrender.com/)
+
+💻 [GitHub Repository](https://github.com/vishalnagar566-collab/django-task-management-system)
 
 ## 🛠️ Skills
 
