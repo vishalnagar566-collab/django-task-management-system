@@ -590,15 +590,31 @@
 
                         <td>
 
-                            {% if task.completed %}
-                                <span class="completed-status">Completed</span>
-                            {% else %}
-                                <span class="pending-status">Pending</span>
-                            {% endif %}
+            
+<td>
+    {% if task.is_completed %}
+        <span class="completed-status">Completed</span>
+    {% else %}
+        <span class="pending-status">Pending</span>
+    {% endif %}
 
-                        </td>
+    <form method="POST" action="{% url 'toggle_task' task.id %}" style="margin-top: 8px;">
+        {% csrf_token %}
 
-                        <td>
+        {% if task.is_completed %}
+            <button type="submit" class="btn btn-orange">
+                Mark Pending
+            </button>
+        {% else %}
+            <button type="submit" class="btn btn-green">
+                Mark Complete
+            </button>
+        {% endif %}
+    </form>
+</td>
+
+
+                        </td>   
 
                             <div class="actions">
 
